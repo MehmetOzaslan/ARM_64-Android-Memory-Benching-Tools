@@ -80,7 +80,7 @@ The benchmarks output CSV data to stdout with the following fields:
 
 ## Notes
 
-- The build directory is git-ignored
-- Binaries are statically linked with OpenMP for portability
-- Default configuration uses 3 threads, 512-byte blocks
-- Affinity is automatically managed for optimal core placement
+- Binaries are statically linked with OpenMP.
+- Default configuration uses 512-byte blocks of nontemporal or cached vector instructions. Note that nontemporal instructions are just a hardware hint and may not always be implemented. Just as a heads up there's also some other libraries that have these implemented.
+- The way core masks are set up currently only allows 8 cores. Note that this was built with the Snapdragon 865 in mind.
+- Write performance is suspiciously high, may be due to either caching effects / hw optimizations or writes not being properly committed. May need to write some tests to verify.
